@@ -1,281 +1,399 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Artesanía Mítica — Naturaleza, Mitos y Belleza</title>
-  <meta name="description" content="Piezas artesanales con alma, inspiradas en la naturaleza, el misticismo y los clásicos." />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#f6f3ee;
-      --ink:#2b2a27;
-      --stone:#cec0ad;
-      --leaf:#5c6f61;
-      --clay:#7b5e41;
-      --gold:#b49a69;
-      --paper:#fffdf8;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
-    body{
-      font-family:"Crimson Text", serif;
-      line-height:1.6;
-      /* textura sutil + “cielo” con grano */
-      background:
-        radial-gradient(1200px 600px at 70% -10%, #e8e1d7, transparent 60%),
-        radial-gradient(900px 500px at 10% -5%, #efe7da, transparent 55%),
-        repeating-linear-gradient(0deg, rgba(0,0,0,.012), rgba(0,0,0,.012) 2px, transparent 2px, transparent 4px);
-    }
-    a{color:var(--clay);text-decoration:none}
-    a:hover{text-decoration:underline}
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:10;
-      background:linear-gradient(to bottom, rgba(255,255,255,.9), rgba(255,255,255,.7));
-      backdrop-filter: blur(6px);
-      border-bottom:1px solid rgba(0,0,0,.06);
-    }
-    .wrap{max-width:1100px;margin:0 auto;padding:0 1rem}
-    .nav{
-      display:flex;align-items:center;justify-content:space-between;padding:0.8rem 0;
-    }
-    .brand{
-      display:flex;align-items:center;gap:.6rem;font-family:"Cormorant Garamond", serif;
-      font-weight:700;font-size:1.35rem;letter-spacing:.5px;
-    }
-    .brand .sigil{width:28px;height:28px}
-    .menu{display:flex;gap:1rem;font-size:.98rem}
-    .btn{
-      display:inline-block;border:1px solid var(--clay);padding:.5rem .9rem;border-radius:999px;
-      background:var(--paper);font-weight:600
-    }
-    .btn.fill{background:var(--clay);color:#fff;border-color:var(--clay)}
-    /* Hero */
-    .hero{
-      position:relative;overflow:hidden
-    }
-    .hero .inner{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:3rem 0}
-    .title{
-      font-family:"Cormorant Garamond", serif;font-size:clamp(2rem,5vw,3.2rem);line-height:1.15; margin:0;
-    }
-    .tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--stone);padding:.35rem .7rem;border-radius:999px;font-size:.9rem;color:#4b4a47;background:var(--paper)}
-    .lead{font-size:1.15rem;color:#4b4a47;margin:.9rem 0 1.4rem}
-    .hero-card{
-      background:var(--paper);border:1px solid var(--stone);border-radius:20px;overflow:hidden;
-      box-shadow:0 10px 30px rgba(0,0,0,.06)
-    }
-    .hero-card img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
-    <img src="https://images.unsplash.com/photo-1504198266285-165a54e70bdb?q=80&w=1600&auto=format&fit=crop" alt="Artesanía mística"/>
-    .hero-card .cap{padding:1rem;border-top:1px dashed var(--stone);font-size:.95rem;color:#5a544c}
-    /* Section titles */
-    section{padding:2.5rem 0}
-    h2.sec{
-      font-family:"Cormorant Garamond", serif;font-size:2rem;margin:0 0 .6rem 0
-    }
-    .sub{color:#5e5a53;margin:0 0 1.3rem 0}
-    /* Colecciones */
-    .grid{display:grid;gap:1rem}
-    .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .card{
-      background:var(--paper);border:1px solid var(--stone);border-radius:18px;padding:1rem 1rem 1.1rem;
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-    .card:hover{transform:translateY(-3px);box-shadow:0 12px 20px rgba(0,0,0,.06)}
-    .sigils{display:flex;gap:.4rem}
-    .sigils svg{width:22px;height:22px;opacity:.9}
-    .card img{width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--stone)}
-    .muted{color:#6a665f;font-size:.95rem}
-    /* Productos */
-    .list{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .pill{display:inline-block;background:#eee6; border:1px solid var(--stone); padding:.2rem .55rem;border-radius:999px;font-size:.85rem;color:#5e5a53}
-    /* Blog */
-    .post{display:flex;gap:1rem;align-items:flex-start;border-top:1px dashed var(--stone);padding-top:1rem;margin-top:1rem}
-    .post img{width:120px;height:90px;object-fit:cover;border:1px solid var(--stone);border-radius:8px}
-    /* Footer */
-    footer{background:#efe7da;border-top:1px solid var(--stone);padding:1.6rem 0;margin-top:2rem}
-    .social{display:flex;gap:.8rem;align-items:center}
-    .legal{color:#6a665f;font-size:.92rem}
-    /* Responsive */
-    @media (max-width:840px){
-      .hero .inner{grid-template-columns:1fr}
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Artesanía Mítica — Naturaleza, Mitos y Belleza</title>
+<meta name="description" content="Piezas artesanales con alma, inspiradas en la naturaleza, el misticismo y los clásicos." />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ee;--ink:#2b2a27;--stone:#cec0ad;--leaf:#5c6f61;--clay:#7b5e41;--gold:#b49a69;--paper:#fffdf8}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+body{font-family:"Crimson Text",serif;line-height:1.6;background:
+  radial-gradient(1200px 600px at 70% -10%, #e8e1d7, transparent 60%),
+  radial-gradient(900px 500px at 10% -5%, #efe7da, transparent 55%),
+  repeating-linear-gradient(0deg, rgba(0,0,0,.012), rgba(0,0,0,.012) 2px, transparent 2px, transparent 4px)}
+a{color:var(--clay);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1rem}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(to bottom, rgba(255,255,255,.9), rgba(255,255,255,.7));backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:"Cormorant Garamond",serif;font-weight:700;font-size:1.35rem;letter-spacing:.5px}
+.brand .sigil{width:28px;height:28px}
+.menu{display:flex;gap:1rem;font-size:.98rem;flex-wrap:wrap}
+.btn{display:inline-block;border:1px solid var(--clay);padding:.5rem .9rem;border-radius:999px;background:var(--paper);font-weight:600}
+.btn.fill{background:var(--clay);color:#fff;border-color:var(--clay)}
+.hero{position:relative;overflow:hidden}
+.hero .inner{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:3rem 0}
+.title{font-family:"Cormorant Garamond",serif;font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin:0}
+.tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--stone);padding:.35rem .7rem;border-radius:999px;font-size:.9rem;color:#4b4a47;background:var(--paper)}
+.lead{font-size:1.15rem;color:#4b4a47;margin:.9rem 0 1.4rem}
+.hero-card{background:var(--paper);border:1px solid var(--stone);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.hero-card img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+.hero-card .cap{padding:1rem;border-top:1px dashed var(--stone);font-size:.95rem;color:#5a544c}
+section{padding:2.2rem 0}
+.sec{font-family:"Cormorant Garamond",serif;font-size:2rem;margin:0 0 .6rem}
+.sub{color:#5e5a53;margin:0 0 1.2rem}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--paper);border:1px solid var(--stone);border-radius:18px;padding:1rem;transition:transform .2s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 20px rgba(0,0,0,.06)}
+.card img{width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--stone)}
+.muted{color:#6a665f;font-size:.95rem}
+.list{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.pill{display:inline-block;background:#eee6;border:1px solid var(--stone);padding:.2rem .55rem;border-radius:999px;font-size:.85rem;color:#5e5a53}
+.post{display:flex;gap:1rem;align-items:flex-start;border-top:1px dashed var(--stone);padding-top:1rem;margin-top:1rem}
+.post img{width:120px;height:90px;object-fit:cover;border:1px solid var(--stone);border-radius:8px}
+.breadcrumbs{font-size:.95rem;color:#6a665f;margin:.6rem 0 1rem}.breadcrumbs a{color:#6a665f}
+footer{background:#efe7da;border-top:1px solid var(--stone);padding:1.6rem 0;margin-top:2rem}
+.social{display:flex;gap:.8rem;align-items:center}.legal{color:#6a665f;font-size:.92rem}
+@media (max-width:840px){.hero .inner{grid-template-columns:1fr}}
+/* helpers */
+.hidden{display:none}
+.center{display:grid;place-items:center;text-align:center}
+.maxw{max-width:800px;margin:0 auto}
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="wrap nav">
-      <div class="brand">
-        <!-- sigilo lunar -->
-        <svg class="sigil" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="32" cy="32" r="30" stroke="var(--clay)" stroke-width="2"/>
-          <path d="M42 18a18 18 0 0 1-22 28 20 20 0 1 0 22-28z" fill="var(--gold)" opacity=".8"/>
-        </svg>
-        <span>Artesanía Mítica</span>
-      </div>
-      <nav class="menu">
-        <a href="#home">Inicio</a>
-        <a href="#colecciones">Colecciones</a>
-        <a href="#productos">Productos</a>
-        <a href="#blog">Blog</a>
-        <a href="#sobre-mi">Sobre mí</a>
-        <a class="btn" href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg class="sigil" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" stroke="var(--clay)" stroke-width="2"/>
+        <path d="M42 18a18 18 0 0 1-22 28 20 20 0 1 0 22-28z" fill="var(--gold)" opacity=".8"/>
+      </svg>
+      <span>Artesanía Mítica</span>
+    </div>
+    <nav class="menu">
+      <a href="#/">Inicio</a>
+      <a href="#/colecciones">Colecciones</a>
+      <a href="#/blog">Blog</a>
+      <a href="#/sobre-mi">Sobre mí</a>
+      <a class="btn" href="#/contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+    <div class="legal">© 2025 Artesanía Mítica · Inspirada en la naturaleza y los clásicos</div>
+    <div class="social">
+      <a href="#/privacidad">Privacidad</a> · <a href="#/cookies">Cookies</a> · <a href="#/aviso-legal">Aviso legal</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===========================
+   DATA: edítalo a tu gusto
+=========================== */
+const DATA = {
+  heroImg: "https://images.unsplash.com/photo-1504198266285-165a54e70bdb?q=80&w=1600&auto=format&fit=crop",
+  collections: [
+    {
+      slug: "artemisa",
+      title: "🌙 Artemisa — Naturaleza y protección",
+      short: "Naturaleza y protección",
+      desc: "Símbolos lunares, hojas y animales nocturnos. Conecta con lo salvaje y lo protector.",
+      cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop",
+      products: [
+        { slug:"colgante-artemisa", title:"Colgante de piedra — luna", img:"https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=1200&auto=format&fit=crop", tags:["símbolo • luna","hecho a mano"], brief:"Piedra grabada a mano; hilo de lino."},
+        { slug:"vela-artemisa", title:"Vela artesanal — bosque", img:"https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop", tags:["aromas naturales","hierbas"], brief:"Cera vegetal, hierbas y notas resinosas."},
+        { slug:"marcapaginas-artemisa", title:"Marcapáginas — cita clásica", img:"https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?q=80&w=1200&auto=format&fit=crop", tags:["papel reciclado"], brief:"Diseño simbólico con frase clásica."},
+        { slug:"saquito-artemisa", title:"Saquitos aromáticos — lavanda", img:"https://images.unsplash.com/photo-1487700160041-babef9c3cb55?q=80&w=1200&auto=format&fit=crop", tags:["hierbas secas"], brief:"Mezcla de hierbas y telas naturales."}
+      ]
+    },
+    {
+      slug: "afrodita",
+      title: "🌹 Afrodita — Amor y belleza",
+      short: "Amor y belleza",
+      desc: "Pétalos, conchas, aguas suaves. Celebrar el vínculo, el cuidado y la dulzura.",
+      cover: "https://images.unsplash.com/photo-1502411970961-3d5fd97387ae?q=80&w=1200&auto=format&fit=crop",
+      products: [
+        { slug:"colgante-afrodita", title:"Colgante — concha", img:"https://images.unsplash.com/photo-1536619425141-5d1cc57bdf49?q=80&w=1200&auto=format&fit=crop", tags:["símbolo • concha"], brief:"Talismán cotidiano con motivos marinos."},
+        { slug:"vela-afrodita", title:"Vela — pétalos", img:"https://images.unsplash.com/photo-1505577058444-a3dab90d4253?q=80&w=1200&auto=format&fit=crop", tags:["aroma floral"], brief:"Cera vegetal con pétalos y notas suaves."},
+      ]
+    },
+    {
+      slug: "apolo",
+      title: "☀️ Apolo — Luz y creatividad",
+      short: "Luz y creatividad",
+      desc: "Sol, espirales y dorados sutiles. Energía clara para crear y expresarte.",
+      cover: "https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=1200&auto=format&fit=crop",
+      products: [
+        { slug:"colgante-apolo", title:"Colgante — sol", img:"https://images.unsplash.com/photo-1524234107056-1c1f48f64ab0?q=80&w=1200&auto=format&fit=crop", tags:["símbolo • sol"], brief:"Grabado solar, energía y claridad."},
+        { slug:"vela-apolo", title:"Vela — dorada", img:"https://images.unsplash.com/photo-1605559424843-9e4a3b8072a5?q=80&w=1200&auto=format&fit=crop", tags:["resina","cítricos"], brief:"Notas cálidas y luminosas para crear."},
+      ]
+    }
+  ],
+  posts: [
+    { slug:"artemisa-bosque", title:"Artemisa y el bosque", cover:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop", excerpt:"Silencio, amparo y luz lunar.", body:"Escribe aquí tu relato. Puedes añadir citas en griego o latín y su traducción."},
+    { slug:"afrodita-espuma", title:"Afrodita y la espuma", cover:"https://images.unsplash.com/photo-1462212210333-33506be73075?q=80&w=1200&auto=format&fit=crop", excerpt:"Desde el mar nace la belleza que cuida.", body:"Otro relato breve que acompañe a la colección."}
+  ],
+  about: { text:"[Escribe aquí tu nombre]. Trabajo con calma, materiales naturales y referencias clásicas. Cada pieza incluye un pequeño relato." },
+  contact: { email:"tucorreo@ejemplo.com", ig:"tuusuario", tiktok:"tuusuario", etsy:"TuTienda" }
+};
+
+/* ===========================
+   MICRO ROUTER (hash-based)
+=========================== */
+const $ = sel => document.querySelector(sel);
+const app = document.getElementById('app');
+
+function link(href, label, cls=""){ return `<a class="${cls}" href="${href}">${label}</a>` }
+function crumbs(items){ // [{href,label}] -> HTML
+  const last = items[items.length-1]?.label || "";
+  return `<div class="breadcrumbs">${items.map((it,i)=> i<items.length-1 ? `<a href="${it.href}">${it.label}</a>` : last).join(" › ")}</div>`;
+}
+
+function viewHome(){
+  app.innerHTML = `
+  <section class="hero">
     <div class="wrap inner">
       <div>
         <span class="tag">Piezas con alma · Naturaleza · Mitos clásicos</span>
         <h1 class="title">Objetos artesanales que conectan con símbolos antiguos, belleza natural y calma.</h1>
-        <p class="lead">
-          Cada pieza está hecha a mano y va acompañada de una pequeña historia o mito. No es solo un objeto: es un relato.
-        </p>
-        <div class="sigils" aria-hidden="true">
-          <!-- sol -->
-          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="12" fill="var(--gold)"/><g stroke="var(--gold)" stroke-width="2"><path d="M32 4v10M32 50v10M4 32h10M50 32h10M12 12l7 7M45 45l7 7M12 52l7-7M45 19l7-7"/></g></svg>
-          <!-- luna -->
-          <svg viewBox="0 0 64 64"><path d="M44 16a18 18 0 1 1-22 28 20 20 0 1 0 22-28z" fill="var(--leaf)"/></svg>
-          <!-- espiral -->
-          <svg viewBox="0 0 64 64"><path d="M32 48c8 0 14-6 14-13s-6-13-14-13-14 6-14 13c0 6 5 11 11 11 5 0 9-4 9-9 0-4-3-8-8-8" fill="none" stroke="var(--clay)" stroke-width="2" stroke-linecap="round"/></svg>
-          <!-- búho estilizado -->
-          <svg viewBox="0 0 64 64"><circle cx="24" cy="26" r="4" fill="var(--ink)"/><circle cx="40" cy="26" r="4" fill="var(--ink)"/><path d="M12 22c6-8 34-8 40 0-2 18-10 28-20 28S14 40 12 22z" fill="none" stroke="var(--ink)" stroke-width="2"/></svg>
-        </div>
-        <p>
-          <a class="btn fill" href="#colecciones">Ver colecciones</a>
-          &nbsp; <a class="btn" href="#productos">Explorar productos</a>
-        </p>
+        <p class="lead">Cada pieza está hecha a mano y va acompañada de una pequeña historia o mito. No es solo un objeto: es un relato.</p>
+        <p>${link("#/colecciones","Ver colecciones","btn fill")} &nbsp; ${link("#/productos","Explorar productos","btn")}</p>
       </div>
       <div class="hero-card">
-        <img alt="Collage artesanal" src="https://images.unsplash.com/photo-1504198266285-165a54e70bdb?q=80&w=1600&auto=format&fit=crop" />
+        <img alt="Collage artesanal" src="${DATA.heroImg}" />
         <div class="cap">Texturas orgánicas, fibras naturales, símbolos solares y lunares.</div>
       </div>
     </div>
   </section>
 
-  <!-- Colecciones -->
-  <section id="colecciones">
+  <section>
     <div class="wrap">
       <h2 class="sec">Colecciones</h2>
-      <p class="sub">Cada colección nace de un mito. Tres o cuatro piezas que puedes combinar o comprar por separado.</p>
+      <p class="sub">Cada colección nace de un mito. Puedes combinarlas o comprarlas por separado.</p>
       <div class="grid g3">
-        <article class="card">
-          <img alt="Colección Artemisa" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200&auto=format&fit=crop" />
-          <h3>🌙 Artemisa — Naturaleza y protección</h3>
-          <p class="muted">Símbolos lunares, hojas y animales nocturnos. Conecta con lo salvaje y lo protector.</p>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1502411970961-3d5fd97387ae?q=80&w=1200&auto=format&fit=crop" alt="Flores Afrodita"/>
-          <h3>🌹 Afrodita — Amor y belleza</h3>
-          <p class="muted">Pétalos, conchas, aguas suaves. Celebrar el vínculo, el cuidado y la dulzura.</p>
-        </article>
-        <article class="card">
-          <img alt="Colección Apolo" src="https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=1200&auto=format&fit=crop" />
-          <h3>☀️ Apolo — Luz y creatividad</h3>
-          <p class="muted">Sol, espirales y dorados sutiles. Energía clara para crear y expresarte.</p>
-        </article>
+        ${DATA.collections.map(c=>`
+          <a class="card" href="#/colecciones/${c.slug}">
+            <img src="${c.cover}" alt="${c.title}">
+            <h3>${c.title}</h3>
+            <p class="muted">${c.desc}</p>
+          </a>
+        `).join("")}
       </div>
     </div>
   </section>
 
-  <!-- Productos -->
-  <section id="productos">
-    <div class="wrap">
-      <h2 class="sec">Productos</h2>
-      <p class="sub">Piezas pequeñas que cuentan historias. Hechas a mano con materiales naturales.</p>
-      <div class="list">
-        <div class="card">
-          <h4>Colgantes de piedra</h4>
-          <span class="pill">símbolos: luna · sol · espiral · búho</span>
-          <p class="muted">Piedras grabadas a mano; hilo de lino o cuero vegetal.</p>
-        </div>
-        <div class="card">
-          <h4>Velas artesanales</h4>
-          <span class="pill">aromas naturales</span>
-          <p class="muted">Cera vegetal, decoración con hierbas y pétalos (lavanda, romero, rosas).</p>
-        </div>
-        <div class="card">
-          <h4>Marcapáginas</h4>
-          <span class="pill">madera o papel reciclado</span>
-          <p class="muted">Diseños simbólicos y citas clásicas en griego/latín.</p>
-        </div>
-        <div class="card">
-          <h4>Saquitos aromáticos</h4>
-          <span class="pill">lavanda · laurel · romero · rosas</span>
-          <p class="muted">Hechos con telas naturales y mezcla de hierbas secas.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog / Relatos -->
-  <section id="blog">
+  <section>
     <div class="wrap">
       <h2 class="sec">Relatos & Mitología</h2>
-      <p class="sub">Breves historias para acompañar tus piezas. Cultura, naturaleza y símbolos.</p>
-
-      <article class="post">
-        <img alt="Luna entre bosques" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" />
-        <div>
-          <h4>Artemisa y el bosque</h4>
-          <p class="muted">Cuenta el mito que la luna protege a los caminantes… Esta colección recupera esa sensación de amparo y silencio.</p>
-        </div>
-      </article>
-
-      <article class="post">
-        <img alt="Conchas y agua" src="https://images.unsplash.com/photo-1462212210333-33506be73075?q=80&w=1200&auto=format&fit=crop" />
-        <div>
-          <h4>Afrodita y la espuma</h4>
-          <p class="muted">Desde el mar nace el símbolo de la belleza que acoge y cuida. Pétalos y conchas como talismanes cotidianos.</p>
-        </div>
-      </article>
+      <p class="sub">Breves historias para acompañar tus piezas.</p>
+      ${DATA.posts.map(p=>`
+        <article class="post">
+          <img src="${p.cover}" alt="${p.title}">
+          <div>
+            <h4>${link(`#/post/${p.slug}`,p.title)}</h4>
+            <p class="muted">${p.excerpt}</p>
+          </div>
+        </article>
+      `).join("")}
     </div>
   </section>
 
-  <!-- Sobre mí -->
-  <section id="sobre-mi">
+  <section>
     <div class="wrap">
       <h2 class="sec">Sobre mí</h2>
-      <p class="sub">Soy anadeclásicas. Trabajo con calma, materiales naturales y referencias clásicas. Cada pieza incluye un pequeño relato impreso para acompañarte.</p>
+      <p class="sub">${DATA.about.text}</p>
     </div>
   </section>
 
-  <!-- Contacto / Tienda -->
-  <section id="contacto">
+  <section>
     <div class="wrap">
       <h2 class="sec">Contacto & Tienda</h2>
       <p class="sub">Escríbeme, pídeme algo a medida o visita la tienda.</p>
-      <p>
-        📩 <a href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a> ·
-        Instagram: <a href="https://instagram.com/tuusuario" target="_blank" rel="noreferrer">@tuusuario</a> ·
-        TikTok: <a href="https://tiktok.com/@tuusuario" target="_blank" rel="noreferrer">@tuusuario</a> ·
-        Etsy: <a href="https://etsy.com/shop/TuTienda" target="_blank" rel="noreferrer">TuTienda</a>
-      </p>
-      <p><em>Próximamente: carrito propio. Mientras, puedes comprar en Etsy o por mensaje directo.</em></p>
+      <p>📩 <a href="mailto:${DATA.contact.email}">${DATA.contact.email}</a> · Instagram: ${link(`https://instagram.com/${DATA.contact.ig}`,'@'+DATA.contact.ig)} · TikTok: ${link(`https://tiktok.com/@${DATA.contact.tiktok}`,'@'+DATA.contact.tiktok)} · Etsy: ${link(`https://etsy.com/shop/${DATA.contact.etsy}`,DATA.contact.etsy)}</p>
     </div>
-  </section>
+  </section>`;
+}
 
-  <footer>
-    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
-      <div class="legal">© 2025 Artesanía Mítica · Inspirada en la naturaleza y los clásicos</div>
-      <div class="social">
-        <a href="#privacidad">Privacidad</a> · <a href="#cookies">Cookies</a> · <a href="#aviso">Aviso legal</a>
+function viewCollections(){
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:"#/colecciones","label":"Colecciones"}])}
+    <h1 class="sec">Colecciones</h1>
+    <p class="sub">Explora las líneas inspiradas en mitos clásicos.</p>
+    <div class="grid g3">
+      ${DATA.collections.map(c=>`
+        <a class="card" href="#/colecciones/${c.slug}">
+          <img src="${c.cover}" alt="${c.title}">
+          <h3>${c.title.split("—")[0]}</h3>
+          <p class="sub">${c.short}</p>
+        </a>
+      `).join("")}
+    </div>
+  </div>`;
+}
+
+function viewCollection(slug){
+  const col = DATA.collections.find(c=>c.slug===slug);
+  if(!col){ viewNotFound(); return }
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:"#/colecciones","label":"Colecciones"},{href:`#/colecciones/${slug}`,"label":slug.charAt(0).toUpperCase()+slug.slice(1)}])}
+    <h1 class="sec">${col.title}</h1>
+    <p class="sub">${col.desc}</p>
+    <div class="grid g3">
+      ${col.products.map(p=>`
+        <a class="card" href="#/producto/${p.slug}">
+          <img src="${p.img}" alt="${p.title}">
+          <h3>${p.title}</h3>
+          <p class="sub">${p.tags.map(t=>`<span class="pill">${t}</span>`).join(" ")}</p>
+          <p class="muted">${p.brief||""}</p>
+        </a>
+      `).join("")}
+    </div>
+  </div>`;
+}
+
+function findProductBySlug(slug){
+  for(const c of DATA.collections){
+    const found = c.products.find(p=>p.slug===slug);
+    if(found) return {product:found, collection:c};
+  }
+  return null;
+}
+
+function viewProduct(slug){
+  const found = findProductBySlug(slug);
+  if(!found){ viewNotFound(); return }
+  const {product, collection} = found;
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:"#/colecciones","label":"Colecciones"},{href:`#/colecciones/${collection.slug}`,"label":collection.slug},{href:`#/producto/${product.slug}`,"label":"Producto"}])}
+    <div class="grid" style="grid-template-columns:1.1fr .9fr;gap:1.2rem">
+      <img class="card" src="${product.img}" alt="${product.title}">
+      <div>
+        <h1 class="sec">${product.title}</h1>
+        <p class="sub">${product.brief||""}</p>
+        <p>Historia/mito: añade aquí el relato que da significado a la pieza.</p>
+        <p>${product.tags.map(t=>`<span class="pill">${t}</span>`).join(" ")}</p>
+        <p>${link("#/contacto","Comprar / Encargar","btn fill")}</p>
       </div>
     </div>
-  </footer>
+  </div>`;
+}
 
-  <!-- Mini script: ancla suave -->
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id=a.getAttribute('href').slice(1);
-        const el=document.getElementById(id);
-        if(el){ e.preventDefault(); el.scrollIntoView({behavior:"smooth"})}
-      });
-    });
-  </script>
+function viewBlog(){
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:"#/blog","label":"Blog"}])}
+    <h1 class="sec">Relatos & Mitología</h1>
+    <div class="grid g3">
+      ${DATA.posts.map(p=>`
+        <a class="card" href="#/post/${p.slug}">
+          <img src="${p.cover}" alt="${p.title}">
+          <h3>${p.title}</h3>
+          <p class="sub">${p.excerpt}</p>
+        </a>
+      `).join("")}
+    </div>
+  </div>`;
+}
+
+function viewPost(slug){
+  const p = DATA.posts.find(x=>x.slug===slug);
+  if(!p){ viewNotFound(); return }
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:"#/blog","label":"Blog"},{href:`#/post/${slug}`,"label":p.title}])}
+    <h1 class="sec">${p.title}</h1>
+    <p class="sub">${p.excerpt}</p>
+    <img class="card" src="${p.cover}" alt="${p.title}" style="margin:1rem 0">
+    <div class="maxw">${p.body}</div>
+  </div>`;
+}
+
+function viewAbout(){
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:"#/sobre-mi","label":"Sobre mí"}])}
+    <h1 class="sec">Sobre mí</h1>
+    <p class="sub">${DATA.about.text}</p>
+  </div>`;
+}
+
+function viewContact(){
+  const c = DATA.contact;
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:"#/contacto","label":"Contacto"}])}
+    <h1 class="sec">Contacto & Tienda</h1>
+    <p class="sub">Escríbeme, pídeme algo a medida o visita la tienda.</p>
+    <p>📩 <a href="mailto:${c.email}">${c.email}</a> · Instagram: <a target="_blank" rel="noreferrer" href="https://instagram.com/${c.ig}">@${c.ig}</a> · TikTok: <a target="_blank" rel="noreferrer" href="https://tiktok.com/@${c.tiktok}">@${c.tiktok}</a> · Etsy: <a target="_blank" rel="noreferrer" href="https://etsy.com/shop/${c.etsy}">${c.etsy}</a></p>
+  </div>`;
+}
+
+function viewProductsAll(){
+  // listado plano de todos los productos (acceso desde #/productos)
+  const items = DATA.collections.flatMap(c => c.products.map(p=>({p, c})));
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:"#/productos","label":"Productos"}])}
+    <h1 class="sec">Productos</h1>
+    <p class="sub">Piezas pequeñas que cuentan historias. Hechas a mano con materiales naturales.</p>
+    <div class="grid g3">
+      ${items.map(({p,c})=>`
+        <a class="card" href="#/producto/${p.slug}">
+          <img src="${p.img}" alt="${p.title}">
+          <h3>${p.title}</h3>
+          <p class="sub"><span class="pill">${c.slug}</span> ${p.tags.map(t=>`<span class="pill">${t}</span>`).join(" ")}</p>
+          <p class="muted">${p.brief||""}</p>
+        </a>
+      `).join("")}
+    </div>
+  </div>`;
+}
+
+function viewLegal(page){
+  const titles={privacidad:"Política de Privacidad",cookies:"Política de Cookies","aviso-legal":"Aviso legal"};
+  const title=titles[page]||"Información";
+  app.innerHTML = `
+  <div class="wrap">
+    ${crumbs([{href:"#/","label":"Inicio"},{href:`#/${page}`,"label":title}])}
+    <h1 class="sec">${title}</h1>
+    <p class="sub">Añade aquí tus textos legales.</p>
+  </div>`;
+}
+
+function viewNotFound(){
+  app.innerHTML = `<div class="wrap center" style="min-height:50vh"><div>
+    <h1 class="sec">Página no encontrada</h1>
+    <p class="sub">Lo sentimos, ese contenido no existe.</p>
+    ${link("#/","Volver al inicio","btn")}
+  </div></div>`;
+}
+
+/* ===========================
+   ROUTES
+=========================== */
+function router(){
+  const hash = location.hash.replace(/^#\/?/,''); // e.g. "", "colecciones", "colecciones/artemisa"
+  const [route, sub, sub2] = hash.split('/');
+  switch(route){
+    case "": case "/": viewHome(); break;
+    case "colecciones":
+      if(sub) viewCollection(sub); else viewCollections(); break;
+    case "producto": viewProduct(sub); break;
+    case "productos": viewProductsAll(); break;
+    case "blog":
+      if(sub) viewPost(sub); else viewBlog(); break;
+    case "post": viewPost(sub); break;
+    case "sobre-mi": viewAbout(); break;
+    case "contacto": viewContact(); break;
+    case "privacidad": case "cookies": case "aviso-legal": viewLegal(route); break;
+    default: viewNotFound();
+  }
+}
+window.addEventListener('hashchange', router);
+window.addEventListener('DOMContentLoaded', router);
+</script>
+
 </body>
 </html>
